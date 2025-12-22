@@ -27,12 +27,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: docs/package-lock.json
 
       - name: Install dependencies
         working-directory: docs
-        run: npm install --prefer-offline --no-audit
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install --include=optional --no-audit || npm install --no-audit
+          # Ensure Linux native binding is installed (fallback for npm bug)
+          npm install @napi-rs/simple-git-linux-x64-gnu@0.1.22 --no-save --no-audit 2>/dev/null || true
 
       - name: Build Next.js site
         working-directory: docs
