@@ -2,4 +2,7 @@ node_modules
 docs/node_modules
 docs/.next
 out
-
+docs/yarn.lock
+docs/package-lock.json
+.DS_Store
+.vscode
