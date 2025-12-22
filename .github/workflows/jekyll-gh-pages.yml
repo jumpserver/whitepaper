@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: docs
-        run: npm ci
+        run: npm install --prefer-offline --no-audit
 
       - name: Build Next.js site
         working-directory: docs
